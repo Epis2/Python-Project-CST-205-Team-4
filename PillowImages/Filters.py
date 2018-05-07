@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from skimage import io, filters
 
 #image I used for tests
-#img = 'rosa_red.jpg'
+img = 'rosa_red.jpg'
 def decrease_red(image,red_percentage):
     decrease = (100 - red_percentage)/100
     im = Image.open(image)
@@ -15,6 +15,7 @@ def decrease_red(image,red_percentage):
     plt.imshow(im)
     plt.show()
 
+decrease_red(img, 50)
 
 
 def negative(image):

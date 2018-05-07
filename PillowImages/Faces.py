@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from pprint import pprint
 
-casc_class = 'haarcascade_frontalface_default.xml'
+casc_class = 'haarcascades\haarcascade_frontalface_default.xml'
 face_cascade = cv2.CascadeClassifier(casc_class)
 
 if face_cascade.empty():
@@ -19,4 +19,8 @@ for (x,y,w,h) in faces:
     cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 
-cv2.imwrite('newface2.png', img)
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#cv2.imwrite('newface2.png', img)
