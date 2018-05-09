@@ -4,9 +4,58 @@ import numpy as np
 import skimage
 import matplotlib.pyplot as plt
 from skimage import io, filters
+import cv2
 
 #image I used for tests
-img = 'rosa_red.jpg'
+#img = 'rosa_red.jpg'
+
+def colorswitch(x):
+    return {
+        'autumn' : cv2.COLORMAP_AUTUMN,
+        'bone' : cv2.COLORMAP_BONE,
+        'jet' : cv2.COLORMAP_JET,
+        'winter' : cv2.COLORMAP_WINTER,
+        'rainbow' : cv2.COLORMAP_RAINBOW,
+        'ocean' : cv2.COLORMAP_OCEAN,
+        'summer' : cv2.COLORMAP_SUMMER,
+        'spring' : cv2.COLORMAP_SPRING,
+        'cool' : cv2.COLORMAP_COOL,
+        'hsv' : cv2.COLORMAP_HSV,
+        'pink' : cv2.COLORMAP_PINK,
+        'hot' : cv2.COLORMAP_HOT,
+    }[x]
+
+def colormaps(image,colormap):
+    image_gray = cv2.imread(image, cv2.IMREAD_GRAYSCALE)
+    image_remap = cv2.applyColorMap(image_gray, colorswitch(colormap))
+    cv2.imshow(colormap  + " " + image , image_remap)
+    cv2.waitKey()
+
+def fontswitch(x):
+    return {
+        'simplex' : cv2.FONT_HERSHEY_SIMPLEX,
+        'plain' : cv2.FONT_HERSHEY_PLAIN,
+        'duplex' : cv2.FONT_HERSHEY_DUPLEX,
+        'complex' : cv2.FONT_HERSHEY_COMPLEX,
+        'triplex' : cv2.FONT_HERSHEY_TRIPLEX,
+        'small' : cv2.FONT_HERSHEY_COMPLEX_SMALL,
+        'script_simplex' : cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,
+        'script_complex' : cv2.FONT_HERSHEY_SCRIPT_COMPLEX,
+    }[x]
+
+def writeText(image,text, x,y, thickness, font = cv2.FONT_HERSHEY_SIMPLEX):
+    imagetext = cv2.putText(image, text, (x,y),font,4, (245,245,245),thickness)
+    cv2.imshow("image",imagetext)
+    cv2.waitKey()
+
+'''
+x,y = coordinates of the bottom left of the string
+thickness = thickness of the text (its an int starting at 1)
+writeText(cv2.imread(img),'TESTING', 50, 300, 3)
+writeText(cv2.imread(img),'TESTING', 50, 300, 3, fontswitch('plain'))
+'''
+
+
 def decrease_red(image,red_percentage):
     decrease = (100 - red_percentage)/100
     im = Image.open(image)
@@ -15,7 +64,6 @@ def decrease_red(image,red_percentage):
     plt.imshow(im)
     plt.show()
 
-decrease_red(img, 50)
 
 
 def negative(image):
