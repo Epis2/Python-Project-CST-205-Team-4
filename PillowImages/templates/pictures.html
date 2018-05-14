@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    <h1>Hello, {{currentUser}}</h1>
+
+
+        {% for item in pictureDictionary %}
+          {%set pic1  = item%}
+            <p>
+              {{item}}
+              <br>
+              <img src = "{{ url_for('static',filename=pic1)}}" width="200" alt="photos"></img>
+            </p>
+            <br>
+            <br>
+        {% endfor%}
+        <form action="" method="post">
+          <input type="text" placeholder="Username" name="username" value="{{
+            request.form.username }}">
+          <input class="btn btn-default" type="submit" value="Modify">
+        </form>
+
+        {% if error %}
+          <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+      </div>
+
+
+  </body>
+</html>

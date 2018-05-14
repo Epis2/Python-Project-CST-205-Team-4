@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      {%set pic1  = image%}
+
+    <img src = "{{ url_for('static',filename=pic1)}}" alt="photos"></img>
+  <form action="" method="post">
+    <input type="text" placeholder="message" name="text" value="{{
+      request.form.text }}">
+    <input type="text" placeholder="X val" name="x" value="{{
+      request.form.x }}">
+    <input type="text" placeholder="Y val" name="y" value="{{
+      request.form.y }}">
+
+    <input class="btn btn-default" type="submit" name = "Write" value="Write">
+  </form>
+  </body>
+</html>
