@@ -1,3 +1,11 @@
+'''
+CST 205
+Filter Website
+Done by Hadrien Navarro
+5/14/18
+
+Has all of the filters needed for the project
+'''
 from PIL import Image
 from PIL import ImageFilter
 import numpy as np

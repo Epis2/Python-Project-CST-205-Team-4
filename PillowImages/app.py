@@ -1,4 +1,12 @@
 # import the Flask class from the flask module
+'''
+CST 205
+Filter Website
+Done by Matthew Lambert
+5/14/18
+
+This file Runs all of the code and uses flask to coonect it to the Html
+'''
 import os
 from flask import Flask, render_template, redirect,flash, url_for, request, session, abort
 from flask_bootstrap import Bootstrap
@@ -21,7 +29,9 @@ app.config['UPLOADED_PHOTOS_DEST'] = route
 photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
 patch_request_class(app)
-
+'''
+Got upload code from https://stackoverflow.com/questions/17788315/upload-files-using-flask-uploads
+'''
 class UploadForm(FlaskForm):
     photo = FileField(validators=[FileAllowed(photos, u'Image only!'), FileRequired(u'File was empty!')])
     submit = SubmitField(u'Upload')
@@ -42,7 +52,7 @@ def home():
     return render_template('welcome.html')
 
 
-
+# Temporary login and create account functions. Will be revamped in the future to be better and more secure.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -60,6 +70,7 @@ def login():
 def create():
     global currentUser
     if request.method == 'POST':
+        # creates a new user
         currentUser = request.form['username']
         users[currentUser] = {
         "password": request.form['password'],
@@ -72,6 +83,7 @@ def create():
 def modify():
     global image
     if request.method == "POST":
+        #calls all the methods that Hadrien wrote
         route = 'static/' + image
         if request.form['submit'] == 'Decrease Red':
             filter.decrease_red(route,50)
@@ -92,6 +104,7 @@ def modify():
         elif request.form['submit'] == 'Write':
             return redirect(url_for('write'))
     return render_template("modify.html",image = image)
+#Crop and Write do not currently work
 @app.route('/crop',methods=['GET','POST'])
 def crop():
     global image
@@ -108,6 +121,10 @@ def write():
         if request.form['submit'] == 'Write':
             filter.writeText(route,request.form["text"],request.form["x"],request.form["y"],1)
     return render_template("write.html",image = image)
+    '''
+    Got upload code from https://stackoverflow.com/questions/17788315/upload-files-using-flask-uploads
+    '''
+#Uploads a photo that user chooses and saves it to the static folder
 @app.route('/upload',methods=['GET','POST'])
 def upload_file():
     form = UploadForm()
@@ -120,6 +137,7 @@ def upload_file():
     else:
         file_url = None
     return render_template('upload.html', form = form, file_url = file_url)
+#Shows the picures and allows user to modify one they choose.
 @app.route('/pictures', methods=['GET', 'POST'])
 def showPictures():
     global currentUser
