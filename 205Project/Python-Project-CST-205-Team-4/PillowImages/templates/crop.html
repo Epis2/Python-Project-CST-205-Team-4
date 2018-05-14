@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      {%set pic1  = image%}
+
+    <img src = "{{ url_for('static',filename=pic1)}}" alt="photos"></img>
+  <form action="" method="post">
+    <input type="text" placeholder="Upper Left pixel" name="uLeft" value="{{
+      request.form.uLeft }}">
+    <input type="text" placeholder="Upper Right pixel" name="uRight" value="{{
+      request.form.uRight }}">
+    <input type="text" placeholder="Lower Left pixel" name="lLeft" value="{{
+      request.form.lLeft }}">
+    <input type="text" placeholder="Lower Right pixel" name="lRight" value="{{
+      request.form.lRight }}">
+    <input class="btn btn-default" type="submit" name = "Crop" value="Crop">
+  </form>
+  </body>
+</html>

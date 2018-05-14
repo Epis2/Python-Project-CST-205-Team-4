@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    <p>{{message}}</p>
+
+
+      {%set pic1  = image%}
+        <p>
+
+            <img src = "{{ url_for('static',filename=pic1)}}" alt="photos"></img>
+            <br>
+            <form action="" method="post">
+              <input class="btn btn-default" type="submit" name = "submit" value="Decrease Red">
+              <input class="btn btn-default" type="submit" name = "submit" value="Negative">
+              <input class="btn btn-default" type="submit" name = "submit" value="greyscale">
+              <input class="btn btn-default" type="submit" name = "submit" value="sepia">
+              <input class="btn btn-default" type="submit" name = "submit" value="thumbnail">
+              <input class="btn btn-default" type="submit" name = "submit" value="crop">
+              <input class="btn btn-default" type="submit" name = "submit" value="Median">
+              <input class="btn btn-default" type="submit" name = "submit" value="Gotham">
+              <input class="btn btn-default" type="submit" name = "submit" value="Write">
+              <input class="btn btn-default" type="submit" name = "submit" value="edge">
+            </form>
+        </p>
+
+    </div>
+  </body>
+</html>
